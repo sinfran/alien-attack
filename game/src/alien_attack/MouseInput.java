@@ -24,7 +24,7 @@ public class MouseInput implements MouseListener {
                     MusicPlayer.start.setVolume(-27);
                     MusicPlayer.start.run();
                     Game.state = Game.state.GAME;
-                    MusicPlayer.songMenu.stopSound();
+//                    MusicPlayer.songMenu.stopSound();
                     MusicPlayer.songGame.setVolume(-28);
                     MusicPlayer.songGame.run();
                 }

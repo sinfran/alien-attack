@@ -22,11 +22,11 @@ public class Earth extends GameObject {
     @Override
     void update() {
         if (Game.state == Game.state.GAME_OVER) {
-            moveAround();
+            move();
         }
     }
 
-    public void moveAround() {
+    public void move() {
         if (move) {
             if (counter % 2 == 0) {
                 if (counter % 4 == 0) {

@@ -42,13 +42,13 @@ public class Game extends Canvas implements Runnable {
     // Entities in game
     private Earth earth;
     private MotherShip ship;
-    public static Player player;
     private UFOShooter shooter1;
     private HealthBar shooter1Health;
     private UFOShooter shooter2;
     private HealthBar shooter2Health;
     private UFOShooter shooter3;
     private HealthBar shooter3Health;
+    public static Player player;
     public static List<Egg> eggs = new CopyOnWriteArrayList<>();
     public static List<Bullet> playerBullets = new CopyOnWriteArrayList<Bullet>();
 
@@ -76,7 +76,7 @@ public class Game extends Canvas implements Runnable {
         // Entities initialization
         earth = new Earth((WIDTH / 4) - 195, 463, 600, 600, Cache.earth);
         ship = new MotherShip((WIDTH / 4) - 100, SHOOTER_HEIGHT - 210, 400, 350, Cache.ship);
-        player = new Player((WIDTH / 2) - 17, HEIGHT - 230, 120, 90, Cache.player);
+        player = new Player((WIDTH / 2) - 17, HEIGHT - 230, 120, 90);
         continueButton = new PlayButton(Game.WIDTH / 2 - 105, 250, 200, 58, Cache.cont);
 
         // UFOShooter initialization
@@ -179,7 +179,7 @@ public class Game extends Canvas implements Runnable {
             }
 
         } else if (state == State.MENU) {
-            graphics.drawImage(Cache.continueBackground, 0, 0, getWidth(), getHeight(), null);
+            graphics.drawImage(Cache.background, 0, 0, getWidth(), getHeight(), null);
             menu.render(graphics);
 
         } else if (state == State.HELP) {
@@ -188,7 +188,7 @@ public class Game extends Canvas implements Runnable {
             graphics.drawImage(Cache.background, 0, 0, null);
             continueButton.draw(graphics);
         } else if (state == State.GAME_OVER) {
-            graphics.drawImage(Cache.continueBackground, 0, 0, null);
+            graphics.drawImage(Cache.background, 0, 0, null);
             earth.draw(graphics);
             earth.render(graphics);
         }

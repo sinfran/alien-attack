@@ -13,16 +13,17 @@ public class Cache {
     private static final String IMAGE_DIR = "images/";
 
     //Menu
-    public static Image background;
+    //public static Image background;
     public static Image playButton;
     public static Image helpButton;
 
     //Game
     public static Image earth;
-    public static Image player;
+    public static Image player_right;
+    public static Image player_left;
     public static Image shooter;
     public static Image cont;
-    public static Image continueBackground;
+    public static Image background;
     public static Image bullet;
     public static Image ship;
 
@@ -32,7 +33,6 @@ public class Cache {
     public static Image spawn;
 
     //GameOver
-    public static Image moon;
 
     public Cache() {
         load();
@@ -41,13 +41,13 @@ public class Cache {
     public void load() {
 
         // Buttons
-        this.background = loadImage("starry-night.png");
         this.playButton = loadImage("play_button.png");
         this.helpButton = loadImage("help_button.png");
-        this.continueBackground = loadImage("continue_screen.jpg");
+        this.background = loadImage("continue_screen.jpg");
 
         this.earth = loadImage("globe.png");
-        this.player = loadImage("astro.png");
+        this.player_right = loadImage("astro.png");
+        this.player_left = loadImage("astro_L.png");
         this.shooter = loadImage("shooter.png");
         this.cont = loadImage("continue.png");
         this.egg = loadImage("egg.png");
@@ -55,7 +55,6 @@ public class Cache {
         this.spawn = loadImage("scary.gif");
         this.bullet = loadImage("fireball.png");
         this.ship = loadImage("mothership.png");
-        this.moon = loadImage("moon.png");
 
     }
 

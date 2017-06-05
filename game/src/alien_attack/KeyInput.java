@@ -19,6 +19,7 @@ public class KeyInput implements KeyListener {
         if (state == Game.State.GAME) {
             if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                 Game.player.right = true;
+                
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                 Game.player.left = true;
             }

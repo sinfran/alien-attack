@@ -15,10 +15,6 @@ public class Bullet extends GameObject {
         super(x, y, width, height, img);
     }
 
-    public void setImage(Image img) {
-        this.img = img;
-    }
-
     @Override
     void update() {
         y += SPEED;

@@ -14,7 +14,7 @@ public class Menu {
     Menu() {
         playButton = new PlayButton(Game.WIDTH / 2 - 128, 179, 255, 100, Cache.playButton);
         helpButton = new PlayButton(Game.WIDTH / 2 - 113, 290, 225, 73, Cache.helpButton);
-        player = new Player((Game.WIDTH / 2) - 84, Game.HEIGHT - 220, 163, 115, Cache.player);
+        player = new Player((Game.WIDTH / 2) - 84, Game.HEIGHT - 220, 163, 115);
     }
 
     public void render(Graphics g) {

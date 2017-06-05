@@ -26,12 +26,6 @@ public abstract class GameObject {
     abstract void update();
     abstract void draw(Graphics g);
 
-    public int getX() {
-        return x;
-    }
-    public void setX(int pos) {
-        x = pos;
-    }
     public int getY() {
         return y;
     }
