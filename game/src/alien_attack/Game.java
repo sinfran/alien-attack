@@ -2,8 +2,6 @@ package alien_attack;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -12,10 +10,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * Created by frances on 2016-12-25.
  */
 
-public class Game extends Canvas implements Runnable, KeyListener {
+public class Game extends Canvas implements Runnable {
 
     private static final long serialVersionUID = 1L;
     private static final int SHOOTER_HEIGHT = 47;
+
+    // Width and height of the game screen
     static final int WIDTH = 400;
     static final int HEIGHT = 600;
 
@@ -45,7 +45,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
     // Entities in game
     private Earth earth;
     private Ship ship;
-    private Player player;
+    public static Player player;
     private Shooter shooter1;
     private HealthBar shooter1Health;
     private Shooter shooter2;
@@ -53,7 +53,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
     private Shooter shooter3;
     private HealthBar shooter3Health;
     public static List<Egg> eggs = new CopyOnWriteArrayList<>();
-    private List<Bullet> playerBullets = new CopyOnWriteArrayList<Bullet>();
+    public static List<Bullet> playerBullets = new CopyOnWriteArrayList<Bullet>();
 
     // Buffer screen after the game has been won
     private PlayButton continueButton;
@@ -70,7 +70,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
         state = Game.state.MENU;
 
         this.addMouseListener(new MouseInput());
-        addKeyListener(this);
+        addKeyListener(new KeyInput());
 
         // Menu initialization
         menu = new Menu();
@@ -146,10 +146,6 @@ public class Game extends Canvas implements Runnable, KeyListener {
         } else if (state == State.GAME_OVER) {
             earth.update();
         }
-
-        //!!!DELETE
-        System.out.println(state);
-
     }
 
 
@@ -190,7 +186,6 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
         } else if (state == State.MENU) {
             graphics.drawImage(Cache.continueBackground, 0, 0, getWidth(), getHeight(), null);
-
             menu.render(graphics);
             playButton.draw(graphics);
             helpButton.draw(graphics);
@@ -213,20 +208,17 @@ public class Game extends Canvas implements Runnable, KeyListener {
         MusicPlayer.songMenu.run();
 
         while (running) {
-
             update();
             render();
             bs.show();
-
             Thread.currentThread();
-
             try {
                 Thread.sleep(20);
             } catch (InterruptedException e) {
             }
         }
     }
-
+/*
     @Override
     public void keyTyped(KeyEvent e) {
     }
@@ -259,6 +251,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
             }
         }
     }
+    */
 
     private void checkCollisions() {
 
