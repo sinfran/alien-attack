@@ -27,26 +27,7 @@ public class MusicPlayer implements Runnable {
         for (String file : files) {
             musicFiles.add("music/" + file);
         }
-
-
     }
-
- /*   private void playSound(String fileName) {
-        try {
-            File soundFile = new File(fileName);
-            AudioInputStream ais = AudioSystem.getAudioInputStream(soundFile);
-            AudioFormat format = ais.getFormat();
-            DataLine.Info info = new DataLine.Info(Clip.class, format);
-            clip = (Clip) AudioSystem.getLine(info);
-            clip.open(ais);
-            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(getVolume());
-            clip.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    */
 
     public void stopSound() {
         clip.stop();
@@ -55,11 +36,6 @@ public class MusicPlayer implements Runnable {
     public void setVolume(int vol) {
         this.volume = vol;
     }
-
-    public int getVolume() {
-        return this.volume;
-    }
-
 
     @Override
     public void run() {

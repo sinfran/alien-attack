@@ -218,40 +218,6 @@ public class Game extends Canvas implements Runnable {
             }
         }
     }
-/*
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if (state == State.GAME) {
-            if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                player.right = true;
-            } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                player.left = true;
-            }
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if (state == State.GAME) {
-            if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                player.right = false;
-            } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                player.left = false;
-            }
-
-            if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                Bullet bullet = new Bullet(player.x + 60, player.y, 10, 10, Cache.bullet);
-                playerBullets.add(bullet);
-                MusicPlayer.zap.setVolume(-43);
-                MusicPlayer.zap.run();
-            }
-        }
-    }
-    */
 
     private void checkCollisions() {
 

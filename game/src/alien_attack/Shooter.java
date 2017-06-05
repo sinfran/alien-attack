@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class Shooter extends GameObject {
 
-    // Initialize posn of each shooter at the start of the game
+    // Initialize position of each shooter at the start of the game
     Random rand = new Random();
     public int pos = rand.nextInt(150) + 79;
 

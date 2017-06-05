@@ -11,9 +11,7 @@ public abstract class GameObject {
     protected int y;
     protected int width;
     protected int height = 10;
-
     protected Image img;
-
     protected Rectangle rect;
 
     GameObject(int x, int y, int width, int height, Image img){
@@ -39,12 +37,6 @@ public abstract class GameObject {
     }
     public void setY(int pos) {
         y = pos;
-    }
-    public int getHeight() {
-        return height;
-    }
-    public void setHeight(int height) {
-        this.height = height;
     }
     public int getWidth() {
         return width;
