@@ -26,16 +26,15 @@ public class Game extends Canvas implements Runnable, KeyListener {
     private boolean running = false;
     static boolean gameOver = false;
 
-    public enum STATE {
+    public enum State {
         MENU,
         HELP,
         GAME,
         WON,
-        LOST,
         GAMEOVER
     }
 
-    public static STATE State;
+    public static Game.State state;
 
     // Main menu
     private Menu menu;
@@ -53,7 +52,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
     private HealthBar shooter2Health;
     private Shooter shooter3;
     private HealthBar shooter3Health;
-    public static List<Egg> eggs = new CopyOnWriteArrayList<Egg>();
+    public static List<Egg> eggs = new CopyOnWriteArrayList<>();
     private List<Bullet> playerBullets = new CopyOnWriteArrayList<Bullet>();
 
     // Buffer screen after the game has been won
@@ -68,7 +67,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
     }
 
     public void setUpGame() {
-        State = STATE.MENU;
+        state = Game.state.MENU;
 
         this.addMouseListener(new MouseInput());
         addKeyListener(this);
@@ -115,7 +114,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
     }
 
     private void update() {
-        if (State == STATE.GAME) {
+        if (state == State.GAME) {
 
             checkCollisions();
 
@@ -144,7 +143,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
                 egg.update();
             }
 
-        } else if (State == STATE.GAMEOVER) {
+        } else if (state == State.GAMEOVER) {
             earth.update();
         }
     }
@@ -155,7 +154,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
         graphics.setColor(Color.black);
         graphics.fillRect(0, 0, WIDTH, HEIGHT);
 
-        if (State == STATE.GAME) {
+        if (state == State.GAME) {
 
             graphics.drawImage(Cache.background, 0, 0, getWidth(), getHeight(), null);
             earth.draw(graphics);
@@ -185,20 +184,19 @@ public class Game extends Canvas implements Runnable, KeyListener {
                 bullet.draw(graphics);
             }
 
-        } else if (State == STATE.MENU) {
+        } else if (state == State.MENU) {
             graphics.drawImage(Cache.continueBackground, 0, 0, getWidth(), getHeight(), null);
 
-            // etWidth(), getHeight()
             menu.render(graphics);
             playButton.draw(graphics);
             helpButton.draw(graphics);
             menuPlayer.draw(graphics);
-        } else if (State == STATE.HELP) {
+        } else if (state == State.HELP) {
             i.render(graphics);
-        } else if (State == STATE.WON) {
+        } else if (state == State.WON) {
             graphics.drawImage(Cache.background, 0, 0, null);
             continueButton.draw(graphics);
-        } else if (State == STATE.GAMEOVER) {
+        } else if (state == State.GAMEOVER) {
             graphics.drawImage(Cache.continueBackground, 0, 0, null);
             earth.draw(graphics);
             earth.render(graphics);
@@ -231,7 +229,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (State == STATE.GAME) {
+        if (state == Game.state.GAME) {
             if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                 player.right = true;
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -242,7 +240,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (State == STATE.GAME) {
+        if (state == Game.state.GAME) {
             if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                 player.right = false;
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -313,7 +311,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
             if ((bullet.rect.intersects(shooter1.rect) ||
                     bullet.rect.intersects(shooter2.rect) ||
                     bullet.rect.intersects(shooter3.rect) && shooter3.isAlive) &&
-                    State == STATE.GAME) {
+                    state == Game.state.GAME) {
                 bullet.hit = true;
             }
         }
@@ -322,7 +320,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
     private void checkGameOver() {
         if (!shooter1.isAlive && !shooter2.isAlive && !shooter3.isAlive && eggs.isEmpty()) {
             gameOver = true;
-            State = STATE.WON;
+            state = State.WON;
         }
     }
 
