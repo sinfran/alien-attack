@@ -31,7 +31,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
         HELP,
         GAME,
         WON,
-        GAMEOVER
+        GAME_OVER
     }
 
     public static Game.State state;
@@ -79,7 +79,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
         helpButton = new PlayButton(Game.WIDTH / 2 - 113, 290, 225, 73, Cache.helpButton);
         playButton = new PlayButton(Game.WIDTH / 2 - 128, 179, 255, 100, Cache.playButton);
 
-        // Entities intialization
+        // Entities initialization
         earth = new Earth((WIDTH / 4) - 195, 463, 600, 600, Cache.earth);
         ship = new Ship((WIDTH / 4) - 100, SHOOTER_HEIGHT - 210, 400, 350, Cache.ship);
         player = new Player((WIDTH / 2) - 17, HEIGHT - 230, 120, 90, Cache.player);
@@ -143,9 +143,13 @@ public class Game extends Canvas implements Runnable, KeyListener {
                 egg.update();
             }
 
-        } else if (state == State.GAMEOVER) {
+        } else if (state == State.GAME_OVER) {
             earth.update();
         }
+
+        //!!!DELETE
+        System.out.println(state);
+
     }
 
 
@@ -196,7 +200,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
         } else if (state == State.WON) {
             graphics.drawImage(Cache.background, 0, 0, null);
             continueButton.draw(graphics);
-        } else if (state == State.GAMEOVER) {
+        } else if (state == State.GAME_OVER) {
             graphics.drawImage(Cache.continueBackground, 0, 0, null);
             earth.draw(graphics);
             earth.render(graphics);
@@ -229,7 +233,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (state == Game.state.GAME) {
+        if (state == State.GAME) {
             if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                 player.right = true;
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -240,7 +244,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (state == Game.state.GAME) {
+        if (state == State.GAME) {
             if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                 player.right = false;
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {

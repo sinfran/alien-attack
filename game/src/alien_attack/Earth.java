@@ -21,7 +21,7 @@ public class Earth extends GameObject {
 
     @Override
     void update() {
-        if (Game.State == Game.STATE.GAMEOVER) {
+        if (Game.state == Game.state.GAME_OVER) {
             moveAround();
         }
     }
