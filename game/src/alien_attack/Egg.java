@@ -1,13 +1,15 @@
 package alien_attack;
 
 import java.awt.*;
+import java.util.Random;
 
 /**
  * Created by frances on 2016-12-27.
  */
 public class Egg extends GameObject {
 
-    private int dy = 2;
+    private static final int JIGGLE_X = 1;
+    private float dy = 1.7f;
     public boolean hit = false;
     public boolean spawn = false;
     public boolean alreadyHit = false;
@@ -25,11 +27,11 @@ public class Egg extends GameObject {
         this.img = img;
     }
 
-    public void setDY(int yDir) {
+    public void setDY(float yDir) {
         dy = yDir;
     }
 
-    public int getDY() {
+    public float getDY() {
         return dy;
     }
 
@@ -38,11 +40,17 @@ public class Egg extends GameObject {
 
         y += dy;
         rect.y += dy;
+
+        if (spawn == true) {
+            x = x + new Random().nextInt(2 * JIGGLE_X + 1) - JIGGLE_X;
+        }
+
         if (hit == true && alreadyHit == false) {
             setImage(Cache.hit);
             hit = false;
             alreadyHit = true;
         }
+
         if (spawn == true) {
             setImage(Cache.spawn);
         }
@@ -54,7 +62,7 @@ public class Egg extends GameObject {
     }
 
     public void hatch() {
-        setDY(6);
+        setDY(3.1f);
     }
 
     }
