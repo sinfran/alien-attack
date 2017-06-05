@@ -7,7 +7,7 @@ import java.util.Random;
  * Created by frances on 2016-12-25.
  */
 
-public class Shooter extends GameObject {
+public class UFOShooter extends GameObject {
 
     // Initialize position of each shooter at the start of the game
     Random rand = new Random();
@@ -20,7 +20,7 @@ public class Shooter extends GameObject {
     private int counter = 0;
 
     // Construct shooter at random posn on game screen
-    public Shooter(int x, int y, int width, int height, Image img) {
+    public UFOShooter(int x, int y, int width, int height, Image img) {
         super(x, y, width, height, img);
         rect = new Rectangle(x + 1, y, width - 24, height - 15);
     }
@@ -50,7 +50,7 @@ public class Shooter extends GameObject {
 
     private void fire() {
         if (this.isAlive && counter % pos == 0) {
-            Egg egg = new Egg(this.x + 30, this.y + 25 + 1, 40, 40, Cache.egg);
+            Egg egg = new Egg(this.x + 30, this.y + 25 + 1, 40, 45, Cache.egg);
             Game.eggs.add(egg);
         }
         counter++;

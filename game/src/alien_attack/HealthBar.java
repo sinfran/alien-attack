@@ -7,7 +7,7 @@ import java.awt.*;
  */
 public class HealthBar {
 
-    public void paint(Graphics g, Shooter s) {
+    public void paint(Graphics g, UFOShooter s) {
 
         int health = s.health * 5;
 

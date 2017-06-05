@@ -41,13 +41,13 @@ public class Game extends Canvas implements Runnable {
 
     // Entities in game
     private Earth earth;
-    private Ship ship;
+    private MotherShip ship;
     public static Player player;
-    private Shooter shooter1;
+    private UFOShooter shooter1;
     private HealthBar shooter1Health;
-    private Shooter shooter2;
+    private UFOShooter shooter2;
     private HealthBar shooter2Health;
-    private Shooter shooter3;
+    private UFOShooter shooter3;
     private HealthBar shooter3Health;
     public static List<Egg> eggs = new CopyOnWriteArrayList<>();
     public static List<Bullet> playerBullets = new CopyOnWriteArrayList<Bullet>();
@@ -75,16 +75,16 @@ public class Game extends Canvas implements Runnable {
 
         // Entities initialization
         earth = new Earth((WIDTH / 4) - 195, 463, 600, 600, Cache.earth);
-        ship = new Ship((WIDTH / 4) - 100, SHOOTER_HEIGHT - 210, 400, 350, Cache.ship);
+        ship = new MotherShip((WIDTH / 4) - 100, SHOOTER_HEIGHT - 210, 400, 350, Cache.ship);
         player = new Player((WIDTH / 2) - 17, HEIGHT - 230, 120, 90, Cache.player);
         continueButton = new PlayButton(Game.WIDTH / 2 - 105, 250, 200, 58, Cache.cont);
 
-        // Shooter initialization
-        shooter1 = new Shooter(100, SHOOTER_HEIGHT, 90, 50, Cache.shooter);
+        // UFOShooter initialization
+        shooter1 = new UFOShooter(100, SHOOTER_HEIGHT, 90, 50, Cache.shooter);
         shooter1Health = new HealthBar();
-        shooter2 = new Shooter(0, SHOOTER_HEIGHT, 90, 50, Cache.shooter);
+        shooter2 = new UFOShooter(0, SHOOTER_HEIGHT, 90, 50, Cache.shooter);
         shooter2Health = new HealthBar();
-        shooter3 = new Shooter(WIDTH - 10, SHOOTER_HEIGHT, 90, 50, Cache.shooter);
+        shooter3 = new UFOShooter(WIDTH - 10, SHOOTER_HEIGHT, 90, 50, Cache.shooter);
         shooter3Health = new HealthBar();
 
         // Setting up the frame
