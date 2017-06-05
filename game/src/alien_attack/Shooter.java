@@ -60,5 +60,4 @@ public class Shooter extends GameObject {
     void draw(Graphics g) {
         g.drawImage(img, x, y, width, height, null);
     }
-
 }

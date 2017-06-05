@@ -38,9 +38,6 @@ public class Game extends Canvas implements Runnable {
 
     // Main menu
     private Menu menu;
-    private Player menuPlayer;
-    private PlayButton playButton;
-    private PlayButton helpButton;
 
     // Entities in game
     private Earth earth;
@@ -75,9 +72,6 @@ public class Game extends Canvas implements Runnable {
         // Menu initialization
         menu = new Menu();
         i = new Instructions();
-        menuPlayer = new Player((WIDTH / 2) - 84, HEIGHT - 200, 163, 115, Cache.player);
-        helpButton = new PlayButton(Game.WIDTH / 2 - 113, 290, 225, 73, Cache.helpButton);
-        playButton = new PlayButton(Game.WIDTH / 2 - 128, 179, 255, 100, Cache.playButton);
 
         // Entities initialization
         earth = new Earth((WIDTH / 4) - 195, 463, 600, 600, Cache.earth);
@@ -94,7 +88,7 @@ public class Game extends Canvas implements Runnable {
         shooter3Health = new HealthBar();
 
         // Setting up the frame
-        JFrame frame = new JFrame("Space Invaders");
+        JFrame frame = new JFrame("Alien Attack");
         frame.setSize(WIDTH, HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
@@ -187,9 +181,7 @@ public class Game extends Canvas implements Runnable {
         } else if (state == State.MENU) {
             graphics.drawImage(Cache.continueBackground, 0, 0, getWidth(), getHeight(), null);
             menu.render(graphics);
-            playButton.draw(graphics);
-            helpButton.draw(graphics);
-            menuPlayer.draw(graphics);
+
         } else if (state == State.HELP) {
             i.render(graphics);
         } else if (state == State.WON) {
@@ -220,7 +212,6 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void checkCollisions() {
-
         for (final Egg egg : eggs) {
             if (egg.rect.intersects(player.rect)) {
                 egg.setDY(-egg.getDY() - 5);

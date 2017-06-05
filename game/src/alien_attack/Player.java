@@ -12,7 +12,6 @@ public class Player extends GameObject {
     public boolean left;
     public boolean right;
 
-
     public Player(int x, int y, int width, int height, Image img) {
         super(x, y, width, height, img);
         this.rect = new Rectangle(x + 13, y + 23, width - 30, height - 70);

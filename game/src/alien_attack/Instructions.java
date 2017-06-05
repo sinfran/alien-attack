@@ -5,6 +5,7 @@ import java.awt.*;
 /**
  * Created by frances on 2016-12-31.
  */
+
 public class Instructions {
 
     private static final int spacing = 20;
