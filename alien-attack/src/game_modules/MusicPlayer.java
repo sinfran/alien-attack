@@ -12,7 +12,7 @@ public class MusicPlayer implements Runnable {
     private ArrayList<String> musicFiles;
     private int currentSongIndex = 0;
     public Clip clip;
-    public int volume = -30;
+    public int volume = -20;
 
     public static MusicPlayer songMenu = new MusicPlayer("likefaith.au");
     public static MusicPlayer songGame = new MusicPlayer("wasteland.au");
@@ -20,7 +20,7 @@ public class MusicPlayer implements Runnable {
     public static MusicPlayer zap = new MusicPlayer("zap.au");
     public static MusicPlayer hit = new MusicPlayer("hit.au");
     public static MusicPlayer hatch = new MusicPlayer("hatch.au");
-    public static MusicPlayer start = new MusicPlayer("start.au");
+    public static MusicPlayer transition = new MusicPlayer("transition.au");
     public static MusicPlayer bounce = new MusicPlayer("bounce.au");
 
 

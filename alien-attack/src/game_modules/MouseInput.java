@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 /**
  * Created by frances on 2016-12-28.
  */
+
 public class MouseInput implements MouseListener {
 
     @Override
@@ -18,33 +19,38 @@ public class MouseInput implements MouseListener {
         int mx = e.getX();
         int my = e.getY();
 
+        // New Game button
         if (Game.state == Game.State.MENU) {
             if (mx >= Game.WIDTH / 2 - 103 && mx <= Game.WIDTH / 2 - 103 + 210) {
                 if (my >= 206 && my <= 206 + 50) {
+                    MusicPlayer.transition.run();
                     Game.state = Game.State.GAME_IN_PROGRESS;
                     MusicPlayer.songMenu.stopSound();
                     MusicPlayer.songGame.setVolume(-20);
                     MusicPlayer.songGame.run();
                 }
             }
+            // Help button
             if (mx >= Game.WIDTH / 2 - 103 && mx <= Game.WIDTH / 2 - 103 + 210) {
                 if (my >= 317 && my <= 317 + 50) {
+                    MusicPlayer.transition.run();
                     Game.state = Game.State.HELP;
                 }
             }
         }
+        // Continue button
         if (Game.state == Game.State.GAME_WIN) {
                 if (mx >= Game.WIDTH / 2 - 104 && mx <= Game.WIDTH / 2 - 103 + 196) {
                     if (my >= 259 && my <= 304) {
+                        MusicPlayer.transition.run();
                         MusicPlayer.songGame.stopSound();
-                        MusicPlayer.start.setVolume(-27);
-                        MusicPlayer.start.run();
+                        MusicPlayer.transition.setVolume(-27);
+                        MusicPlayer.transition.run();
                         MusicPlayer.songGameOver.run();
                         Game.state = Game.State.GAME_OVER;
                     }
                 }
             }
-
     }
 
     @Override

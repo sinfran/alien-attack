@@ -124,17 +124,16 @@ public class Game extends Canvas implements Runnable {
 
                 bullet.update();
             }
-
+            checkGameOver();
             shooter1.update();
             shooter2.update();
             shooter3.update();
             player.update();
             earth.update();
             ship.update();
-            checkGameOver();
 
             for (Egg egg : eggs) {
-                if (egg.y <= 0 || egg.y >= HEIGHT) {
+                if (egg.y <= -8 || egg.y >= HEIGHT) {
                     eggs.remove(egg);
                 }
                 egg.update();
@@ -281,21 +280,21 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void checkGameOver() {
-        if (!shooter1.isAlive && !shooter2.isAlive && !shooter3.isAlive && eggs.isEmpty()) {
-            gameOver = true;
-            state = State.GAME_WIN;
-            return;
-        }
         for (Egg e : eggs) {
-            if (e.getY() > HEIGHT) {
-                eggs.remove(e);
+            if (e.rect.intersects(0, HEIGHT, WIDTH, HEIGHT)) {
+                System.out.println(e.y);
+                eggs.clear();
                 state = State.GAME_LOSE;
                 System.out.println("GAME OVER");
             }
-
-
         }
-    }
+            if (!shooter1.isAlive && !shooter2.isAlive && !shooter3.isAlive && eggs.isEmpty()) {
+                gameOver = true;
+                state = State.GAME_WIN;
+                return;
+            }
+        }
+    
 
     public static void main(String[] args) {
         new Game();

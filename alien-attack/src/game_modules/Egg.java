@@ -15,11 +15,8 @@ public class Egg extends GameObject {
     public boolean alreadyHit = false;
 
     public Egg(int x, int y, int width, int height, Image img) {
-        super(x, y, width, height, img);
-    }
 
-    public Image getImage() {
-        return this.img;
+        super(x, y, width, height, img);
     }
 
     public void setImage(Image img) {
@@ -41,7 +38,7 @@ public class Egg extends GameObject {
         y += dy;
         rect.y += dy;
 
-        // alien babies jiggle as they fall down the screen
+        // Alien babies jiggle as they fall down the screen
         if (spawn == true) {
             x = x + new Random().nextInt(2 * JIGGLE_X + 1) - JIGGLE_X;
         }

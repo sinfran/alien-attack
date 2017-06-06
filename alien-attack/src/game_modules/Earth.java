@@ -11,19 +11,22 @@ public class Earth extends GameObject {
     public boolean move = true;
     public boolean offScreen = false;
     private int counter = 0;
-    private int alpha = 3;
-    private int beta = 4;
-    private int gamma = 4;
+
+    // Variables for game-over earth animation
+    private int a = 3;
+    private int b = 4;
+    private int g = 4;
 
     public Earth(int x, int y, int width, int height, Image img) {
 
         super(x, y, width, height, img);
-        //this.rect = new Rectangle(x, y, width, height - 600);
+        //this.rect = new Rectangle(x, y + 60, width, height - 100);
+
     }
 
     @Override
     void update() {
-        if (Game.state == Game.state.GAME_OVER) {
+        if (Game.state == Game.State.GAME_OVER) {
             move();
         }
     }
@@ -60,31 +63,31 @@ public class Earth extends GameObject {
         //Setting up
         Font fnt0 = new Font("times", Font.BOLD, 20);
         g.setFont(fnt0);
-        Color a = new Color(255, 255, 255, alpha);
+        Color a = new Color(255, 255, 255, this.a);
         g.setColor(a);
         g.drawString("The aliens are gone.", 60, 177);
 
         if (y < 430) {
-            if (alpha < 220) {
-                alpha += 2;
+            if (this.a < 220) {
+                this.a += 2;
             }
         }
 
         if (y < 375) {
-            if (beta < 220) {
-                beta += 2;
+            if (b < 220) {
+                b += 2;
             }
         }
 
-        Color b = new Color(255, 255, 255, beta);
+        Color b = new Color(255, 255, 255, this.b);
         g.setColor(b);
         g.drawString("You have saved Earth.", 60, 198);
 
         if (offScreen) {
-            if (gamma < 220) {
-                gamma += 4;
+            if (this.g < 220) {
+                this.g += 4;
             }
-            Color c = new Color(255, 255, 255, gamma);
+            Color c = new Color(255, 255, 255, this.g);
             g.setColor(c);
             g.drawString("Thank you for playing.", 102, 400);
         }

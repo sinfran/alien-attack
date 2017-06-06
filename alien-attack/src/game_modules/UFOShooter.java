@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class UFOShooter extends GameObject {
 
-    // Initialize position of each shooter at the start of the game_modules
+    // Initialize position of each shooter at the transition of the game_modules
     Random rand = new Random();
     public int pos = rand.nextInt(150) + 79;
 
