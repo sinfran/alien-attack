@@ -16,7 +16,9 @@ public class Earth extends GameObject {
     private int gamma = 4;
 
     public Earth(int x, int y, int width, int height, Image img) {
+
         super(x, y, width, height, img);
+        //this.rect = new Rectangle(x, y, width, height - 600);
     }
 
     @Override

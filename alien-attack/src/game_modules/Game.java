@@ -65,7 +65,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void setUpGame() {
-        state = Game.state.MENU;
+        state = State.MENU;
 
         this.addMouseListener(new MouseInput());
         addKeyListener(new KeyInput());
@@ -141,6 +141,7 @@ public class Game extends Canvas implements Runnable {
         } else if (state == State.GAME_OVER) {
             earth.update();
         } else if (state == State.GAME_LOSE) {
+          //TODO: do something when user loses the game
             System.exit(0);
         }
     }
@@ -221,11 +222,6 @@ public class Game extends Canvas implements Runnable {
                 MusicPlayer.bounce.setVolume(-38);
                 MusicPlayer.bounce.run();
             }
-
-            if (egg.rect.intersects(earth.rect)) {
-                state = State.GAME_LOSE;
-            }
-
             else {
                 for (Bullet bullet : playerBullets) {
                     if (egg.rect.intersects(bullet.rect) && !egg.alreadyHit) {
@@ -274,7 +270,7 @@ public class Game extends Canvas implements Runnable {
             if ((bullet.rect.intersects(shooter1.rect) ||
                     bullet.rect.intersects(shooter2.rect) ||
                     bullet.rect.intersects(shooter3.rect) && shooter3.isAlive) &&
-                    state == Game.state.GAME_IN_PROGRESS) {
+                    state == State.GAME_IN_PROGRESS) {
                 bullet.hit = true;
             }
         }
@@ -284,6 +280,16 @@ public class Game extends Canvas implements Runnable {
         if (!shooter1.isAlive && !shooter2.isAlive && !shooter3.isAlive && eggs.isEmpty()) {
             gameOver = true;
             state = State.GAME_WIN;
+            return;
+        }
+        for (Egg e : eggs) {
+            if (e.getY() > HEIGHT) {
+                eggs.remove(e);
+                state = State.GAME_LOSE;
+                System.out.println("GAME OVER");
+            }
+
+
         }
     }
 

@@ -33,12 +33,12 @@ public class MusicPlayer implements Runnable {
         clip.stop();
     }
 
+
     public void setVolume(int vol) {
         this.volume = vol;
     }
 
     @Override
     public void run() {
-
     }
 }

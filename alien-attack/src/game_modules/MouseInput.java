@@ -38,7 +38,7 @@ public class MouseInput implements MouseListener {
         if (Game.state == Game.State.GAME_WIN) {
                 if (mx >= Game.WIDTH / 2 - 104 && mx <= Game.WIDTH / 2 - 103 + 196) {
                     if (my >= 259 && my <= 304) {
-//                        MusicPlayer.songGame.stopSound();
+                        MusicPlayer.songGame.stopSound();
                         MusicPlayer.start.setVolume(-27);
                         MusicPlayer.start.run();
                         MusicPlayer.songGameOver.run();
