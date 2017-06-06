@@ -21,17 +21,15 @@ public class MouseInput implements MouseListener {
         if (Game.state == Game.State.MENU) {
             if (mx >= Game.WIDTH / 2 - 103 && mx <= Game.WIDTH / 2 - 103 + 210) {
                 if (my >= 206 && my <= 206 + 50) {
-                    MusicPlayer.start.setVolume(-27);
-                    MusicPlayer.start.run();
-                    Game.state = Game.state.GAME_IN_PROGRESS;
-//                    MusicPlayer.songMenu.stopSound();
-                    MusicPlayer.songGame.setVolume(-28);
+                    Game.state = Game.State.GAME_IN_PROGRESS;
+                    MusicPlayer.songMenu.stopSound();
+                    MusicPlayer.songGame.setVolume(-20);
                     MusicPlayer.songGame.run();
                 }
             }
             if (mx >= Game.WIDTH / 2 - 103 && mx <= Game.WIDTH / 2 - 103 + 210) {
                 if (my >= 317 && my <= 317 + 50) {
-                    Game.state = Game.state.HELP;
+                    Game.state = Game.State.HELP;
                 }
             }
         }

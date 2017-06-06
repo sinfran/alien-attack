@@ -12,6 +12,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game extends Canvas implements Runnable {
 
+    static boolean gameIP = false;
+
     private static final long serialVersionUID = 1L;
     private static final int SHOOTER_HEIGHT = 47;
 
@@ -76,7 +78,7 @@ public class Game extends Canvas implements Runnable {
 
         // Entities initialization
         earth = new Earth((WIDTH / 4) - 195, 463, 600, 600, Cache.earth);
-        ship = new MotherShip((WIDTH / 4) - 100, SHOOTER_HEIGHT - 210, 400, 350, Cache.ship);
+        ship = new MotherShip((WIDTH / 4) - 125, SHOOTER_HEIGHT - 210, 450, 360, Cache.ship);
         player = new Player((WIDTH / 2) - 17, HEIGHT - 230, 120, 90);
         continueButton = new PlayButton(Game.WIDTH / 2 - 105, 250, 200, 58, Cache.cont);
 
@@ -200,12 +202,14 @@ public class Game extends Canvas implements Runnable {
 
     @Override
     public void run() {
-        MusicPlayer.songMenu.setVolume(-10);
-        MusicPlayer.songMenu.run();
+
+            MusicPlayer.songMenu.setVolume(-7);
+            MusicPlayer.songMenu.run();
 
         while (running) {
             update();
             render();
+
             bs.show();
             Thread.currentThread();
             try {

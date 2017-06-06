@@ -38,7 +38,7 @@ public class KeyInput implements KeyListener {
             if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                 Bullet bullet = new Bullet(Game.player.x + 60, Game.player.y, 10, 10, Cache.bullet);
                 Game.playerBullets.add(bullet);
-                MusicPlayer.zap.setVolume(-43);
+                MusicPlayer.zap.setVolume(-40);
                 MusicPlayer.zap.run();
             }
         }

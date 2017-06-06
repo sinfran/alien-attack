@@ -1,6 +1,7 @@
 package game_modules;
 
-import javax.sound.sampled.Clip;
+import javax.sound.sampled.*;
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -9,8 +10,9 @@ import java.util.ArrayList;
 public class MusicPlayer implements Runnable {
 
     private ArrayList<String> musicFiles;
+    private int currentSongIndex = 0;
     public Clip clip;
-    public int volume = -20;
+    public int volume = -30;
 
     public static MusicPlayer songMenu = new MusicPlayer("likefaith.au");
     public static MusicPlayer songGame = new MusicPlayer("wasteland.au");
@@ -23,14 +25,36 @@ public class MusicPlayer implements Runnable {
 
 
     public MusicPlayer(String... files) {
-        musicFiles = new ArrayList<>();
-        for (String file : files) {
-            musicFiles.add("music/" + file);
+       musicFiles = new ArrayList<>();
+       for (String file : files) {
+           musicFiles.add("./music/" + file);
+       }
+    }
+
+    private void playSound(String fileName) {
+        try {
+            File soundFile = new File(fileName);
+            AudioInputStream ais = AudioSystem.getAudioInputStream(soundFile);
+            AudioFormat format = ais.getFormat();
+            DataLine.Info info = new DataLine.Info(Clip.class, format);
+            clip = (Clip) AudioSystem.getLine(info);
+            clip.open(ais);
+            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(volume);
+            clip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     public void stopSound() {
-        clip.stop();
+        if (clip == null) return;
+        clip.close();
+    }
+
+    @Override
+    public void run() {
+        playSound(musicFiles.get(currentSongIndex));
     }
 
 
@@ -38,7 +62,5 @@ public class MusicPlayer implements Runnable {
         this.volume = vol;
     }
 
-    @Override
-    public void run() {
-    }
+
 }
