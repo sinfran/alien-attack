@@ -19,8 +19,8 @@ public class MouseInput implements MouseListener {
         int mx = e.getX();
         int my = e.getY();
 
-        // New Game button
         if (Game.state == Game.State.MENU) {
+            // Play button
             if (mx >= Game.WIDTH / 2 - 103 && mx <= Game.WIDTH / 2 - 103 + 210) {
                 if (my >= 206 && my <= 206 + 50) {
                     MusicPlayer.transition.run();
@@ -38,8 +38,18 @@ public class MouseInput implements MouseListener {
                 }
             }
         }
+
+        // Back button
+        if (Game.state == Game.State.HELP) {
+            if (mx >= 24 && mx <= 54)
+                if (my >= 27 && my <= 52) {
+                MusicPlayer.transition.run();
+                Game.state = Game.State.MENU;
+                }
+        }
+
         // Continue button
-        if (Game.state == Game.State.GAME_WIN) {
+        if (Game.state == Game.State.GAME_OVER_WON) {
                 if (mx >= Game.WIDTH / 2 - 104 && mx <= Game.WIDTH / 2 - 103 + 196) {
                     if (my >= 259 && my <= 304) {
                         MusicPlayer.transition.run();
@@ -47,7 +57,7 @@ public class MouseInput implements MouseListener {
                         MusicPlayer.transition.setVolume(-27);
                         MusicPlayer.transition.run();
                         MusicPlayer.songGameOver.run();
-                        Game.state = Game.State.GAME_OVER;
+                        Game.state = Game.State.GAME_OVER_ANIMATION;
                     }
                 }
             }

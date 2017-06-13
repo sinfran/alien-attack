@@ -6,11 +6,13 @@ import java.awt.*;
  * Created by frances on 2016-12-31.
  */
 
-public class Instructions {
+public class GameInstructions {
 
     private static final int spacing = 20;
     private static final int yStart = 86;
     private static final int xPos = 9;
+    private PlayButton backButton = new PlayButton(25, 22, 30, 30, Cache.backButton);
+
 
     public void render(Graphics g) {
 
@@ -21,9 +23,16 @@ public class Instructions {
 
         //Title
         g.setFont(fnt0);
-        g.drawString("Instructions", 86, 48);
+        g.drawString("GameInstructions", 89, 51);
 
-        //Instructions
+        //GameInstructions
+
+        backButton.draw(g);
+
+
+
+
+
         g.setFont(fnt1);
         g.drawString("Use the LEFT and RIGHT arrow keys to move around.", xPos, yStart);
         g.drawString("Press the space bar to shoot your bullets at the UFOs above.", xPos, yStart + spacing);

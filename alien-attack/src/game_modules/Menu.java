@@ -9,11 +9,15 @@ import java.awt.*;
 public class Menu {
     private PlayButton playButton;
     private PlayButton helpButton;
+
+
+
     private Player player;
 
     Menu() {
         playButton = new PlayButton(Game.WIDTH / 2 - 128, 179, 255, 100, Cache.playButton);
         helpButton = new PlayButton(Game.WIDTH / 2 - 113, 290, 225, 73, Cache.helpButton);
+
         player = new Player((Game.WIDTH / 2) - 84, Game.HEIGHT - 220, 163, 115);
     }
 

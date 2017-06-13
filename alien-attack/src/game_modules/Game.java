@@ -12,8 +12,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game extends Canvas implements Runnable {
 
-    static boolean gameIP = false;
-
     private static final long serialVersionUID = 1L;
     private static final int SHOOTER_HEIGHT = 47;
 
@@ -32,9 +30,9 @@ public class Game extends Canvas implements Runnable {
         MENU,
         HELP,
         GAME_IN_PROGRESS,
-        GAME_WIN,
-        GAME_LOSE,
-        GAME_OVER
+        GAME_OVER_WON,
+        GAME_OVER_LOST,
+        GAME_OVER_ANIMATION
     }
 
     public static Game.State state;
@@ -59,7 +57,7 @@ public class Game extends Canvas implements Runnable {
     private PlayButton continueButton;
 
     // Game Over screen
-    private Instructions i;
+    private GameInstructions i;
 
     public Game() {
         new Cache();
@@ -74,7 +72,7 @@ public class Game extends Canvas implements Runnable {
 
         // Menu initialization
         menu = new Menu();
-        i = new Instructions();
+        i = new GameInstructions();
 
         // Entities initialization
         earth = new Earth((WIDTH / 4) - 195, 463, 600, 600, Cache.earth);
@@ -118,12 +116,11 @@ public class Game extends Canvas implements Runnable {
             for (Bullet bullet : playerBullets) {
                 if (bullet.hit)
                     playerBullets.remove(bullet);
-
                 if (bullet.y <= -1)
                     playerBullets.remove(bullet);
-
                 bullet.update();
             }
+
             checkGameOver();
             shooter1.update();
             shooter2.update();
@@ -139,10 +136,12 @@ public class Game extends Canvas implements Runnable {
                 egg.update();
             }
 
-        } else if (state == State.GAME_OVER) {
+        } else if (state == State.GAME_OVER_ANIMATION) {
             earth.update();
-        } else if (state == State.GAME_LOSE) {
+        } else if (state == State.GAME_OVER_LOST) {
           //TODO: do something when user loses the game
+            // play destruction sound clip.
+
             System.exit(0);
         }
     }
@@ -189,10 +188,10 @@ public class Game extends Canvas implements Runnable {
 
         } else if (state == State.HELP) {
             i.render(graphics);
-        } else if (state == State.GAME_WIN) {
+        } else if (state == State.GAME_OVER_WON) {
             graphics.drawImage(Cache.background, 0, 0, null);
             continueButton.draw(graphics);
-        } else if (state == State.GAME_OVER) {
+        } else if (state == State.GAME_OVER_ANIMATION) {
             graphics.drawImage(Cache.background, 0, 0, null);
             earth.draw(graphics);
             earth.render(graphics);
@@ -280,21 +279,20 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void checkGameOver() {
+        if (!shooter1.isAlive && !shooter2.isAlive && !shooter3.isAlive && eggs.isEmpty()) {
+            gameOver = true;
+            state = State.GAME_OVER_WON;
+            return;
+        }
         for (Egg e : eggs) {
             if (e.rect.intersects(0, HEIGHT, WIDTH, HEIGHT)) {
                 System.out.println(e.y);
                 eggs.clear();
-                state = State.GAME_LOSE;
-                System.out.println("GAME OVER");
+                state = State.GAME_OVER_LOST;
             }
         }
-            if (!shooter1.isAlive && !shooter2.isAlive && !shooter3.isAlive && eggs.isEmpty()) {
-                gameOver = true;
-                state = State.GAME_WIN;
-                return;
-            }
-        }
-    
+    }
+
 
     public static void main(String[] args) {
         new Game();

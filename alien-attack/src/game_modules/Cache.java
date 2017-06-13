@@ -17,6 +17,8 @@ public class Cache {
     public static Image playButton;
     public static Image helpButton;
 
+    public static Image backButton;
+
     //Game
     public static Image earth;
     public static Image player_right;
@@ -42,6 +44,9 @@ public class Cache {
 
         // Buttons
         this.playButton = loadImage("play_button.png");
+
+        this.backButton = loadImage("back.png");
+
         this.helpButton = loadImage("help_button.png");
         this.background = loadImage("continue_screen.jpg");
 
@@ -55,7 +60,6 @@ public class Cache {
         this.spawn = loadImage("scary.gif");
         this.bullet = loadImage("fireball.png");
         this.ship = loadImage("mothership.png");
-
     }
 
     private Image loadImage(String img) {
