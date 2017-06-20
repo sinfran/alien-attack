@@ -38,7 +38,7 @@ public class Game extends Canvas implements Runnable {
     public static Game.State state;
 
     // Main menu
-    private Menu menu;
+    private GameMenu menu;
 
     // Entities in game
     private Earth earth;
@@ -70,8 +70,8 @@ public class Game extends Canvas implements Runnable {
         this.addMouseListener(new MouseInput());
         addKeyListener(new KeyInput());
 
-        // Menu initialization
-        menu = new Menu();
+        // GameMenu initialization
+        menu = new GameMenu();
         i = new GameInstructions();
 
         // Entities initialization
@@ -94,6 +94,7 @@ public class Game extends Canvas implements Runnable {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.add(this);
+
         thread = new Thread(this);
         frame.setVisible(true);
     }
@@ -135,14 +136,11 @@ public class Game extends Canvas implements Runnable {
                 }
                 egg.update();
             }
+        } else if (state == State.GAME_OVER_LOST) {
+            GameOverDefeated.update();
 
         } else if (state == State.GAME_OVER_ANIMATION) {
             earth.update();
-        } else if (state == State.GAME_OVER_LOST) {
-          //TODO: do something when user loses the game
-            // play destruction sound clip.
-
-            System.exit(0);
         }
     }
 
@@ -185,14 +183,15 @@ public class Game extends Canvas implements Runnable {
         } else if (state == State.MENU) {
             graphics.drawImage(Cache.background, 0, 0, getWidth(), getHeight(), null);
             menu.render(graphics);
-
         } else if (state == State.HELP) {
             i.render(graphics);
         } else if (state == State.GAME_OVER_WON) {
             graphics.drawImage(Cache.background, 0, 0, null);
             continueButton.draw(graphics);
-        } else if (state == State.GAME_OVER_ANIMATION) {
-            graphics.drawImage(Cache.background, 0, 0, null);
+        } else if (state == State.GAME_OVER_LOST) {
+            GameOverDefeated.render(graphics);
+        }
+        else if (state == State.GAME_OVER_ANIMATION) {
             earth.draw(graphics);
             earth.render(graphics);
         }
@@ -221,8 +220,11 @@ public class Game extends Canvas implements Runnable {
         for (final Egg egg : eggs) {
             if (egg.rect.intersects(player.rect)) {
                 egg.setDY(-egg.getDY() - 5);
-                MusicPlayer.bounce.setVolume(-38);
-                MusicPlayer.bounce.run();
+                if (!egg.playBounce) {
+                    MusicPlayer.bounce.setVolume(-30);
+                    MusicPlayer.bounce.run();
+                    egg.playBounce = true;
+                }
             }
             else {
                 for (Bullet bullet : playerBullets) {
@@ -289,6 +291,8 @@ public class Game extends Canvas implements Runnable {
                 System.out.println(e.y);
                 eggs.clear();
                 state = State.GAME_OVER_LOST;
+                GameOverDefeated.playGameOverSound();
+
             }
         }
     }

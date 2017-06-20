@@ -5,7 +5,7 @@ import java.awt.*;
  * Created by frances on 2016-12-25.
  */
 
-public class Bullet extends GameObject {
+public class Bullet extends Sprite {
 
     private static final int SPEED = -4;
     public boolean hit = false;

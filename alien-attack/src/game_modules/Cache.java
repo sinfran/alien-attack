@@ -12,7 +12,12 @@ public class Cache {
 
     private static final String IMAGE_DIR = "images/";
 
-    //Menu
+
+    public static Image keys;
+    public static Image spacebar;
+    public static Image clock;
+
+    //GameMenu
     //public static Image background;
     public static Image playButton;
     public static Image helpButton;
@@ -44,10 +49,15 @@ public class Cache {
 
         // Buttons
         this.playButton = loadImage("play_button.png");
-
         this.backButton = loadImage("back.png");
-
         this.helpButton = loadImage("help_button.png");
+
+
+        // Images for instruction page
+        this.keys = loadImage("keys.png");
+        this.spacebar = loadImage("spacebar.png");
+        this.clock = loadImage("clock.png");
+
         this.background = loadImage("continue_screen.jpg");
 
         this.earth = loadImage("globe.png");

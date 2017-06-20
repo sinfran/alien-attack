@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Created by frances on 2016-12-25.
  */
-public abstract class GameObject {
+public abstract class Sprite {
 
     protected int x;
     protected int y;
@@ -14,7 +14,7 @@ public abstract class GameObject {
     protected Image img;
     protected Rectangle rect;
 
-    GameObject(int x, int y, int width, int height, Image img){
+    Sprite(int x, int y, int width, int height, Image img){
         this.x = x;
         this.y = y;
         this.width = width;

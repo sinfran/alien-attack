@@ -22,6 +22,7 @@ public class MusicPlayer implements Runnable {
     public static MusicPlayer hatch = new MusicPlayer("hatch.au");
     public static MusicPlayer transition = new MusicPlayer("transition.au");
     public static MusicPlayer bounce = new MusicPlayer("bounce.au");
+    public static MusicPlayer evil = new MusicPlayer("evil.au");
 
 
     public MusicPlayer(String... files) {

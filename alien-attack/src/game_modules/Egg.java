@@ -6,13 +6,16 @@ import java.util.Random;
 /**
  * Created by frances on 2016-12-27.
  */
-public class Egg extends GameObject {
+public class Egg extends Sprite {
 
     private static final int JIGGLE_X = 1;
     private float dy = 1.7f;
     public boolean hit = false;
     public boolean spawn = false;
     public boolean alreadyHit = false;
+
+    // Boolean to avoid having the bounce sound clip play more than once
+    public boolean playBounce = false;
 
     public Egg(int x, int y, int width, int height, Image img) {
 

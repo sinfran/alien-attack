@@ -6,7 +6,7 @@ import java.awt.*;
  * Created by frances on 2016-12-27.
  */
 
-public class Earth extends GameObject {
+public class Earth extends Sprite {
 
     public boolean move = true;
     public boolean offScreen = false;
@@ -65,7 +65,7 @@ public class Earth extends GameObject {
         g.setFont(fnt0);
         Color a = new Color(255, 255, 255, this.a);
         g.setColor(a);
-        g.drawString("The aliens are gone.", 60, 177);
+        g.drawString("The aliens are gone.", 60, 185);
 
         if (y < 430) {
             if (this.a < 220) {
@@ -73,23 +73,25 @@ public class Earth extends GameObject {
             }
         }
 
-        if (y < 375) {
-            if (b < 220) {
-                b += 2;
+        if (counter > 310) {
+            if (y < 375) {
+                if (b < 220) {
+                    b += 2;
+                }
             }
+            Color b = new Color(255, 255, 255, this.b);
+            g.setColor(b);
+            g.drawString("You have saved Earth.", 60, 220);
         }
 
-        Color b = new Color(255, 255, 255, this.b);
-        g.setColor(b);
-        g.drawString("You have saved Earth.", 60, 198);
+            if (offScreen) {
+                if (this.g < 220) {
+                    this.g += 4;
+                }
+                Color c = new Color(255, 255, 255, this.g);
+                g.setColor(c);
+                g.drawString("Thank you for playing.", 102, 400);
 
-        if (offScreen) {
-            if (this.g < 220) {
-                this.g += 4;
-            }
-            Color c = new Color(255, 255, 255, this.g);
-            g.setColor(c);
-            g.drawString("Thank you for playing.", 102, 400);
         }
     }
 }

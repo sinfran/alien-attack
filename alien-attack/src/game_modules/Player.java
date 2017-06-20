@@ -6,7 +6,7 @@ import java.awt.*;
  * Created by frances on 2016-12-25.
  */
 
-public class Player extends GameObject {
+public class Player extends Sprite {
 
     private static final int SPEED = 8;
     public boolean left;

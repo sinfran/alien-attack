@@ -6,7 +6,7 @@ import java.awt.*;
  * Created by frances on 2016-12-29.
  */
 
-public class PlayButton extends GameObject {
+public class PlayButton extends Sprite {
 
     public PlayButton(int x, int y, int width, int height, Image img) {
         super(x, y, width, height, img);

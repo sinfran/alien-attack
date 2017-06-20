@@ -7,12 +7,13 @@ import java.util.Random;
  * Created by frances on 2016-12-25.
  */
 
-public class UFOShooter extends GameObject {
+public class UFOShooter extends Sprite {
 
     // Initialize position of each shooter at the transition of the game_modules
     Random rand = new Random();
     public int pos = rand.nextInt(150) + 79;
 
+    // For full health bar, set health to 10
     public int health = 1;
     public boolean isAlive = true;
 
@@ -42,7 +43,7 @@ public class UFOShooter extends GameObject {
         if (!moveLeft) {
             x++;
             rect.x++;
-            if (x == Game.WIDTH - 20) {
+            if (x == Game.WIDTH - 26) {
                 moveLeft = true;
             }
         }
@@ -50,7 +51,7 @@ public class UFOShooter extends GameObject {
 
     private void fire() {
         if (this.isAlive && counter % pos == 0) {
-            Egg egg = new Egg(this.x + 30, this.y + 25 + 1, 40, 45, Cache.egg);
+            Egg egg = new Egg(this.x + 30, this.y + 25 + 1, 40, 37, Cache.egg);
             Game.eggs.add(egg);
         }
         counter++;
